@@ -23,9 +23,6 @@ public class Run extends Thread {
         @Override
     public void run() {
 
-
-            
-            
             AGAC.progessBar.setMinimum(0);
             AGAC.progessBar.setMaximum(Const.SLACK_GEN);
             Genetic aGenetic = new Genetic();

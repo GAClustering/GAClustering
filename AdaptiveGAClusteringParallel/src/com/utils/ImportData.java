@@ -58,27 +58,6 @@ public class ImportData {
             
         }
         
-//        for (int i = 0; i<Const.SimilarityMatrix.length; i++) {
-//            for (int j = 0; j< Const.SimilarityMatrix[i].length; j++){
-//                System.out.print(Const.SimilarityMatrix[i][j] + "\t");
-//            }
-//            System.out.println();
-//        }
-//        
-//        w = Workbook.getWorkbook(inputWorkbook);
-//	Sheet sheet = w.getSheet(0);
-//        NumberOfRecord = sheet.getRows();
-//        //SAGPC.outputText.append("Total records: " + (NumberOfRecord) + "\n");
-//        Const.SimilarityMatrix = new Double[NumberOfRecord][NumberOfRecord];
-//        for (int i = 0; i < NumberOfRecord; i++) {
-//            
-//            for (int j = 0; j < NumberOfRecord; j++) {
-//                Cell cell = sheet.getCell(j, i);
-//                Const.SimilarityMatrix[i][j] = Double.parseDouble(cell.getContents());
-//            }
-//
-//        }
-  
         return NumberOfRecord; //file header
     }
 
