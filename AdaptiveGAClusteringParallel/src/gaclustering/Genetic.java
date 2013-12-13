@@ -75,7 +75,8 @@ public class Genetic {
   
 
  public void Execute() {
-     
+
+
     List< Future > futuresList = new ArrayList< Future >();
     int nrOfProcessors = Runtime.getRuntime().availableProcessors();
     ExecutorService eservice = Executors.newFixedThreadPool(nrOfProcessors);
@@ -96,9 +97,15 @@ public class Genetic {
         }
         
     }
-    
-
-
+        /*
+      * Enable for parallel processing
+    /*  
+    Double fitness = 0.0;
+    for(int i = 0 ; i < Const.POPULATION ; i++) {
+        fitness = this.aPopulation[i].calFitness();
+        this.aPopulation[i].setFitness(fitness);
+    }
+*/ 
   }
 
 public void printAllChromosomes(){
