@@ -15,7 +15,6 @@ public class clustering {
     //private ArrayList<Integer> DataList;
     private Double intraDisimilarity;
     private Double interDisimilarity;
-    private Element elements[];
 
     public static void main(String[] args) {
         try {
@@ -68,15 +67,6 @@ public class clustering {
     }
 
     public clustering() {
-        //DataList = new ArrayList<>();
-        intraDisimilarity = 0.00;
-        interDisimilarity = 0.00;
-        //DataList = new ArrayList<>();
-//        for (int i = 1; i <= Const.SimilarityMatrix.length; i++) {
-//            DataList.add(i);
-//        }
-
-        elements = new Element[Const.TOTAL_RECORDS];
 
     }
 
@@ -85,6 +75,8 @@ public class clustering {
         int minID = 0;
         Double MinAvg = 0.0;
         int minClusterNo = 0;
+        Element elements[];
+        elements = new Element[Const.TOTAL_RECORDS];
         for (int i = 0; i < Const.TOTAL_RECORDS; i++) {
             elements[i] = new Element(i);
             elements[i].intitial(clusterMedroid);
@@ -123,6 +115,7 @@ public class clustering {
 
         }
 
+        elements = null;
         return callInterSim(clusterMedroid) - calIntraSim(clusterMedroid);
     }
 

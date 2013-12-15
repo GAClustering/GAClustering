@@ -10,7 +10,6 @@ public class Population {
 
     private Double Fitness;
     private int Chromosome[];
-    private clustering c;
     ArrayList<Integer> dataNode;
     private ArrayList<ArrayList<Integer>> clusterResult;
 
@@ -19,7 +18,6 @@ public class Population {
         Chromosome = new int[Const.CHROMOSOME_LENGTH];
         Fitness = 0.0;
         clusterResult = new ArrayList<>();
-        c = new clustering();
     }
 
     public void setFitness(Double Value) {
@@ -54,7 +52,8 @@ public class Population {
         }
 
         Double fitness = 0.0;
-
+        clustering c;
+        c = new clustering();
         ArrayList<ArrayList<Integer>> clusterMedroid = new ArrayList<>();
         int clusterNo = 0;
         ArrayList<Integer> d = new ArrayList<>();
@@ -72,6 +71,9 @@ public class Population {
         fitness = c.findCluster(clusterMedroid);
 
         setClusterResult(clusterMedroid);
+        clusterMedroid = null;
+        
+
         return fitness;
     }
 
