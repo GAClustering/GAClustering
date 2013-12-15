@@ -1,21 +1,16 @@
 package gaclustering;
 
 import au.com.bytecode.opencsv.CSVWriter;
-import com.utils.Purity;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Population {
 
     private Double Fitness;
     private int Chromosome[];
-
+    private clustering c;
     ArrayList<Integer> dataNode;
     private ArrayList<ArrayList<Integer>> clusterResult;
 
@@ -24,6 +19,7 @@ public class Population {
         Chromosome = new int[Const.CHROMOSOME_LENGTH];
         Fitness = 0.0;
         clusterResult = new ArrayList<>();
+        c = new clustering();
     }
 
     public void setFitness(Double Value) {
@@ -58,9 +54,6 @@ public class Population {
         }
 
         Double fitness = 0.0;
-
-        clustering c = new clustering();
-        c.setDissimilarity(Const.SimilarityMatrix);
 
         ArrayList<ArrayList<Integer>> clusterMedroid = new ArrayList<>();
         int clusterNo = 0;
