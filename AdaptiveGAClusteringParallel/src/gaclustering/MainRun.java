@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jxl.read.biff.BiffException;
@@ -24,8 +25,22 @@ public class MainRun {
 
     public static void main(String[] args) {
 
-        final ResourceBundle res = ResourceBundle.getBundle("com.config.SystemConfiguration");
+        final ResourceBundle res = ResourceBundle.getBundle("com.config.SystemConfiguration"); 
+        Scanner scan= new Scanner(System.in);
+
         String FileName = res.getString("file.name");
+        System.out.print("File Name (" + FileName + "): ");
+        String FileNameInput= scan.nextLine();
+        if(!FileNameInput.equals("")){
+            FileName = FileNameInput;
+        }
+        
+        System.out.print("Cluster Number (" + Const.NUM_OF_CLUSTER + "): " );
+        String ClusterNo = scan.nextLine();
+        if(!ClusterNo.equals("")){
+            Const.NUM_OF_CLUSTER = Integer.parseInt(ClusterNo);
+        }
+  
         File file = new File(FileName);
         ImportData preprocess_data = new ImportData(file);
         try {
@@ -64,6 +79,8 @@ public class MainRun {
 
         MainRun m = new MainRun();
         m.run();
+        System.exit(0);
+
     }
 
     public void run() {
