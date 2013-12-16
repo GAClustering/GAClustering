@@ -20,6 +20,7 @@ public class Genetic {
     private ArrayList<Integer> DataSetPool;
     private String Data;
     private Integer size=0;
+    private Integer bestPos;
     
     public Genetic()  {
           rand = new Random();
@@ -28,6 +29,7 @@ public class Genetic {
               DataSet.add(i);
           }
           aPopulation = new Population[Const.POPULATION]; 
+          bestPos = 0;
       }
 
     public void GenPop(){
@@ -61,16 +63,8 @@ public class Genetic {
   }
   
   public Population bestPop() {
-    
-    int max_pos=0;
-    double max_val = aPopulation[0].getFitness();
-    for (int i =0; i < aPopulation.length; i++) {
-        if(aPopulation[0].getFitness() > max_val){
-            max_pos=i;
-        }
-    }  
-      
-    return this.aPopulation[max_pos];
+   
+    return this.aPopulation[bestPos];
   }
   
 
@@ -84,14 +78,19 @@ public class Genetic {
     for(int index = 0; index < Const.POPULATION; index++) {
     	 futuresList.add(eservice.submit(new Task(this.aPopulation[index])));
      }
-    Object taskResult;
     
+    Object taskResult;
+    Double bestFitness = 0.0;
     for (int i=0; i< futuresList.size();i++) {
         Double fitness = 0.0;
         try {
             taskResult = futuresList.get(i).get();
             fitness = (Double) taskResult;
             this.aPopulation[i].setFitness(fitness);
+            if (fitness > bestFitness) {
+                bestFitness = fitness;
+                bestPos = i;
+            }
         } catch (InterruptedException | ExecutionException ex) {
             Logger.getLogger(Genetic.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -118,7 +117,7 @@ public void printAllChromosomes(){
  
 
 public void Sort()
-   {
+   {  
         int i,j;
         Population tmpSortPopulation = new Population();
         //****************** Bubble Sort *********************
@@ -143,12 +142,13 @@ public void Sort()
    }
 
 
+
 // Mode1
   public  void Reproduction() {
       
-      
+
         this.Sort();
-        
+
         Population newPopulation[];
         newPopulation = new Population[Const.POPULATION]; 
         
@@ -221,9 +221,6 @@ public void Sort()
          this.aPopulation[i].setChromosome(newPopulation[i].getChromosome());
      }
         
-        
-        
-       
     }
 
  // Mode2
