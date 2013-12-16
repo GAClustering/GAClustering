@@ -22,9 +22,11 @@ public class AGAC extends javax.swing.JFrame {
     /**
      * Creates new form SAGPFC
      */
-    public AGAC() {
+    public AGAC() throws IOException {
         initComponents();
         progessBar.setVisible(false);
+        File f = new File(new File(".").getCanonicalPath());
+        fileChooser.setCurrentDirectory(f);
     }
 
     /**
@@ -38,6 +40,7 @@ public class AGAC extends javax.swing.JFrame {
 
         fileChooser = new javax.swing.JFileChooser();
         jDialog1 = new javax.swing.JDialog();
+        jSpinner1 = new javax.swing.JSpinner();
         jPanel1 = new javax.swing.JPanel();
         fileName = new javax.swing.JTextField();
         openChoose = new javax.swing.JButton();
@@ -63,8 +66,6 @@ public class AGAC extends javax.swing.JFrame {
         txtSlackGen = new javax.swing.JTextField();
         btnStart = new javax.swing.JButton();
         progessBar = new javax.swing.JProgressBar();
-
-        fileChooser.setCurrentDirectory(new java.io.File("D:\\SIT\\Thesis\\data\\HeartData"));
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -411,7 +412,11 @@ public class AGAC extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AGAC().setVisible(true);
+                try {
+                    new AGAC().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(AGAC.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -433,6 +438,7 @@ public class AGAC extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JButton openChoose;
     public static javax.swing.JTextArea outputText;
     public static javax.swing.JProgressBar progessBar;
