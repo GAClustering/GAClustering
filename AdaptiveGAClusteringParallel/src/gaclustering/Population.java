@@ -71,7 +71,7 @@ public class Population {
         setClusterResult(clusterMedroid);
         clusterMedroid = null;
         
-
+        Fitness = fitness;
         return fitness;
     }
 
