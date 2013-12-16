@@ -31,8 +31,8 @@ public class Population {
     private boolean isInvalid() {
         // Check duplicate
         boolean dup = false;
-        for (int i = 0; i < Chromosome.length; i++) {
-            for (int j = 0; j < Chromosome.length; j++) {
+        for (int i = 0; i < Chromosome.length - 1; i++) {
+            for (int j = i+1; j < Chromosome.length; j++) {
                 if (i != j && Chromosome[i] == Chromosome[j]) {
                     dup = true;
                 }
@@ -45,8 +45,6 @@ public class Population {
     public Double calFitness() {
 
         if (isInvalid()) {
-            //System.out.println("Invalid!!");
-
             this.setChromosome(Gencommand());
 
         }
