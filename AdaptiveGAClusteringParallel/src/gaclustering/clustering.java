@@ -119,7 +119,7 @@ public class clustering {
         return callInterSim(clusterMedroid) - calIntraSim(clusterMedroid);
     }
 
-    private Double callInterSim(ArrayList<ArrayList<Integer>> clusterMedroid) {
+    public Double callInterSim(ArrayList<ArrayList<Integer>> clusterMedroid) {
 
         Double sum = 0.0;
         for (int i = 0; i < clusterMedroid.size() - 1; i++) {
@@ -135,7 +135,7 @@ public class clustering {
         return sum;
     }
 
-     private Double calIntraSim(ArrayList<ArrayList<Integer>> clusterMedroid){
+     public Double calIntraSim(ArrayList<ArrayList<Integer>> clusterMedroid){
          Double sum = 0.0;
          
          for (ArrayList<Integer> d : clusterMedroid) {
