@@ -50,8 +50,8 @@ public class Population {
         }
 
         Double fitness = 0.0;
-        clustering c;
-        c = new clustering();
+        Clustering c;
+        c = new Clustering();
         ArrayList<ArrayList<Integer>> clusterMedroid = new ArrayList<>();
         int clusterNo = 0;
         ArrayList<Integer> d = new ArrayList<>();
