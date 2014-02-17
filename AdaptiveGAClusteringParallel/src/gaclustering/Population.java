@@ -1,6 +1,8 @@
 package gaclustering;
 
 import au.com.bytecode.opencsv.CSVWriter;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class Population {
         // Check duplicate
         boolean dup = false;
         for (int i = 0; i < Chromosome.length - 1; i++) {
-            for (int j = i+1; j < Chromosome.length; j++) {
+            for (int j = i + 1; j < Chromosome.length; j++) {
                 if (i != j && Chromosome[i] == Chromosome[j]) {
                     dup = true;
                 }
@@ -70,24 +72,36 @@ public class Population {
 
         setClusterResult(clusterMedroid);
         clusterMedroid = null;
-        
+
         Fitness = fitness;
         return fitness;
     }
 
     public void printResult() throws IOException {
 
-        CSVWriter writer = new CSVWriter(new FileWriter("output_" + this.getFitness() + ".csv"));
+
+
+
+        File file = new File("output_" + this.getFitness() + ".csv");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        
+        
+        FileWriter fw = new FileWriter(file.getAbsoluteFile());
+        BufferedWriter bw = new BufferedWriter(fw);
         for (int i = 0; i < getClusterResult().size(); i++) {
+            String content = "";
             System.out.println("\n Output for : " + (i + 1) + " th, n = " + getClusterResult().get(i).size());
             for (int j = 0; j < getClusterResult().get(i).size(); j++) {
-                System.out.print(getClusterResult().get(i).get(j) + ", ");
+                content += getClusterResult().get(i).get(j) + ",";
             }
-            writer.writeNext(getClusterResult().get(i).toString());
-            System.out.println();
+            content += "\n";
+            bw.write(content);
 
         }
-        writer.close();
+
+        bw.close();
 
     }
 
@@ -136,5 +150,4 @@ public class Population {
     public void setClusterResult(ArrayList<ArrayList<Integer>> clusterResult) {
         this.clusterResult = clusterResult;
     }
-
 }
