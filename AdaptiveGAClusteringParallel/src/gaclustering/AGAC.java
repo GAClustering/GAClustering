@@ -367,7 +367,7 @@ public class AGAC extends javax.swing.JFrame {
         //length = (Const.NUM_OF_CLUSTER * Const.TOTAL_RECORDS) / 100;
         length = Const.NUM_OF_CLUSTER * (Const.TOTAL_RECORDS / 100);
         if (length < (2 * Const.NUM_OF_CLUSTER)) {
-            Const.CHROMOSOME_LENGTH = length;
+            Const.CHROMOSOME_LENGTH = (2 * Const.NUM_OF_CLUSTER);
         }
         else {
             Const.CHROMOSOME_LENGTH = length;
@@ -377,6 +377,8 @@ public class AGAC extends javax.swing.JFrame {
         
         
         AGAC.outputText.append("\n ****Paremeters saved.**** \n");
+        AGAC.outputText.append("CHROMOSOME_LENGTH: " + Const.CHROMOSOME_LENGTH + "\n");
+        AGAC.outputText.append("MEDROID_LENGTH: " + Const.MEDROID_LENGTH + "\n");
         JOptionPane.showMessageDialog(null, "****Paremeters saved.**** " );
     }//GEN-LAST:event_btnConfirmActionPerformed
 
