@@ -36,7 +36,7 @@ public class Population {
         for (int i = 0; i < Chromosome.length - 1; i++) {
             for (int j = i + 1; j < Chromosome.length; j++) {
                 if (i != j && Chromosome[i] == Chromosome[j]) {
-                    dup = true;
+                    return true;
                 }
             }
         }
