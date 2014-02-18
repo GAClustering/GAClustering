@@ -140,6 +140,7 @@ public class Population {
     /**
      * @return the clusterResult
      */
+    
     public ArrayList<ArrayList<Integer>> getClusterResult() {
         return clusterResult;
     }
