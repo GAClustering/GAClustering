@@ -95,39 +95,6 @@ System.out.println("cal fitness time: " + duration);
 
     }
 
-    public Double findCluster2(ArrayList<ArrayList<Integer>> clusterMedroid) {
-
-        int minClusterNo = 0;
-
-        //Initial data elements
-        Element elements[];
-        elements = new Element[Const.TOTAL_RECORDS];
-        ArrayList<ArrayList<Integer>> clusterMedroid2;
-        clusterMedroid2 = new ArrayList<ArrayList<Integer>>(clusterMedroid);
-        for (int i = 0; i < Const.TOTAL_RECORDS; i++) {
-            elements[i] = new Element(i);
-            elements[i].intitial(clusterMedroid);
-            
-            minClusterNo = elements[i].getMinClusterPosition();
-            if( !elements[i].isIs_moved() ) {
-                clusterMedroid.get(minClusterNo).add(i+1);
-                elements[i].setIs_moved(true);
-            }
-            
-        }
-        
-//        for (int i = 0; i < Const.TOTAL_RECORDS; i++) {
-//            minClusterNo = elements[i].getMinClusterPosition();
-//            if( !clusterMedroid.get(minClusterNo).contains(i + 1) && !elements[i].isIs_moved() ) {
-//                clusterMedroid.get(minClusterNo).add(i+1);
-//                elements[i].setIs_moved(true);
-//            }
-//            
-//        }
-        
-        return callInterSim(clusterMedroid) - calIntraSim(clusterMedroid);
-    }
-
     public Double findCluster(ArrayList<ArrayList<Integer>> clusterMedroid) {
 
         int minID = 0;
@@ -137,14 +104,10 @@ System.out.println("cal fitness time: " + duration);
         //Initial data elements
         Element elements[];
         elements = new Element[Const.TOTAL_RECORDS];
-        ArrayList<Integer> elementList = new ArrayList<>();
         for (int i = 0; i < Const.TOTAL_RECORDS; i++) {
             elements[i] = new Element(i);
             elements[i].intitial(clusterMedroid);
             
-            if ( !elements[i].isIs_moved()){
-                elementList.add(i);
-            }
             
             if (i == 0 || MinAvg > elements[i].getMinAvg()) {
                 MinAvg = elements[i].getMinAvg();
