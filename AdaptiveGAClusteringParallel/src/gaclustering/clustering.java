@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jxl.read.biff.BiffException;
 
-public class clustering {
+public class Clustering {
 
     private Double[][] Dissimilarity;
     //private ArrayList<Integer> DataList;
@@ -30,7 +30,7 @@ public class clustering {
                 {27, 34, 46, 10, 36, 25}};
 
             for (int[] k : allmedroid) {
-                clustering c = new clustering();
+                Clustering c = new Clustering();
                 ArrayList<ArrayList<Integer>> clusterMedroid = new ArrayList<>();
                 int clusterNo = 0;
                 ArrayList<Integer> d = new ArrayList<>();
@@ -61,12 +61,12 @@ public class clustering {
             }
 
         } catch (InstantiationException | IllegalAccessException | SQLException | IOException | BiffException ex) {
-            Logger.getLogger(clustering.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Clustering.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public clustering() {
+    public Clustering() {
 
     }
 
@@ -75,6 +75,10 @@ public class clustering {
         int minID = 0;
         Double MinAvg = 0.0;
         int minClusterNo = 0;
+     
+        
+             
+        //Initial data elements
         Element elements[];
         elements = new Element[Const.TOTAL_RECORDS];
         for (int i = 0; i < Const.TOTAL_RECORDS; i++) {
@@ -90,8 +94,8 @@ public class clustering {
 
 
         int totalMember = Const.MEDROID_LENGTH * Const.NUM_OF_CLUSTER;
-        while (totalMember <= Const.TOTAL_RECORDS) {
-            if (!clusterMedroid.get(minClusterNo).contains(minID + 1)) {
+        while (totalMember < Const.TOTAL_RECORDS) {
+            if (!clusterMedroid.get(minClusterNo).contains(minID + 1) && !elements[minID].isIs_moved()) {
                 clusterMedroid.get(minClusterNo).add(minID + 1);
                 elements[minID].setIs_moved(true);
             }
